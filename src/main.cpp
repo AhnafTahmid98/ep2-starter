@@ -19,6 +19,8 @@
  * square wave, always running, that you can find on the scope in seconds.
  * It is deliberately NOT the LED pin — see the note above ledcSetup().
  */
+#if 0
+
 #include <Arduino.h>
 
 #define RGB_LED_PIN 38   // silkscreen: RGB@IO38
@@ -57,4 +59,63 @@ void loop() {
   neopixelWrite(RGB_LED_PIN, 0, 0, 0);        // off
   Serial.println("blink: off");
   delay(500);
+}
+
+
+
+#include <Arduino.h>
+
+#define LED_PIN 40
+
+void setup() {
+  Serial.begin(115200);
+  delay(300);
+
+  pinMode(LED_PIN, OUTPUT);
+
+  Serial.println();
+  Serial.println("Plain LED blinking on GPIO40.");
+}
+
+void loop() {
+  digitalWrite(LED_PIN, HIGH);
+  Serial.println("LED ON");
+  delay(500);
+
+  digitalWrite(LED_PIN, LOW);
+  Serial.println("LED OFF");
+  delay(500);
+}
+
+#endif
+
+#include <Arduino.h>
+
+#define LED_PIN 40
+
+void setup() {
+  Serial.begin(115200);
+  delay(300);
+
+  pinMode(LED_PIN, OUTPUT);
+
+  Serial.println("My blink pattern");
+}
+
+void loop() {
+  // First quick blink test successful
+  digitalWrite(LED_PIN, HIGH);
+  delay(200);
+
+  digitalWrite(LED_PIN, LOW);
+  delay(200);
+
+  // Second quick blink successful
+  digitalWrite(LED_PIN, HIGH);
+  delay(200);
+
+  digitalWrite(LED_PIN, LOW);
+
+  // Longer pause
+  delay(2000);
 }
